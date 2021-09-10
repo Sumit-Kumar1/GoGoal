@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 1435328950}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f65e34c2b2946b4495cc90e95e31bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1435328944}
+  rb_Player: {fileID: 1435328949}
+  cam: {fileID: 506486144}
 --- !u!1001 &1805141786
 PrefabInstance:
   m_ObjectHideFlags: 0
