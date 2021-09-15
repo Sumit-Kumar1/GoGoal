@@ -5,6 +5,7 @@ public class playerControl : MonoBehaviour
     float _speed = 10.0f;
     [SerializeField]
     private Rigidbody rb;
+
     private void Start() {
         rb = GetComponent<Rigidbody>();
     }
