@@ -9,9 +9,7 @@ public class testinput : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Jump(){
+        Debug.Log("JUMP!!");
     }
 }

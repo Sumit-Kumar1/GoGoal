@@ -16,9 +16,13 @@ MonoBehaviour:
   - Accelerometer
   - Keyboard
   - Mouse
+  - Joystick
+  - AndroidJoystick
+  - Sensor
+  - Touchscreen
   m_UpdateMode: 1
   m_CompensateForScreenOrientation: 1
-  m_FilterNoiseOnCurrent: 0
+  m_FilterNoiseOnCurrent: 1
   m_DefaultDeadzoneMin: 0.125
   m_DefaultDeadzoneMax: 0.925
   m_DefaultButtonPressPoint: 0.5
