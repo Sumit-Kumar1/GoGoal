@@ -2,31 +2,20 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
-    float _speed = 10.0f;
-    [SerializeField]
-    private Rigidbody rb;
+    [SerializeField] private float m_Vspeed = 5.0f;
+    [SerializeField] private float m_Hspeed = 5.0f;
+    [SerializeField] private Rigidbody rb;
+    private float m_Hpos;
+    private float m_Vpos;
 
     private void Start() {
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();    
     }
-    void Update()
-    {
-        Vector3 dir = Vector3.zero;
-        //we assume that device is held parallel to ground
-        // home button is in right hand
+    private void Update() {
+        
+        m_Vpos = Input.GetAxis("Vertical")*m_Vspeed*Time.deltaTime;
+        m_Hpos = Input.GetAxis("Horizontal")*m_Hspeed*Time.deltaTime;
 
-        //XY plane of device is mapped onto XZ plane
-        //Rotate 90 degrees around Y axis
-
-        dir.x = -Input.acceleration.y;
-        dir.z = Input.acceleration.x;
-
-        //clamp acceleration vector to unit sphere
-        if(dir.sqrMagnitude > 1)
-            dir.Normalize();
-
-        dir *= Time.deltaTime;
-        this.transform.Translate(dir*_speed);
-
+       rb.AddForce(m_Hpos,0, m_Vpos, ForceMode.Impulse);
     }
 }
