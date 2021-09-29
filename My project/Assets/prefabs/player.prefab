@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8327311011401235693}
   - component: {fileID: 8327311011401235691}
   - component: {fileID: 8327311011401235692}
-  - component: {fileID: 8327311011401235689}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -113,16 +112,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8327311011401235689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8327311011401235694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec407b6635bf6552a18c94273a5bfc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
