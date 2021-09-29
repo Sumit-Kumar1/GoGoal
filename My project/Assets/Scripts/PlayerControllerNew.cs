@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerControllerNew : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    InputActionsAsset controls;
+    private void Awake()
     {
-        
+        controls = new InputActionsAsset();//Initialize the new inputActionMap object
+        controls.Player.Move.performed += ctx => Move();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        controls.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Player.Disable();
     }
 }
