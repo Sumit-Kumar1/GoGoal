@@ -1,13 +1,19 @@
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class GyroControl : MonoBehaviour
 {
+    [SerializeField]
     float _speed = 10.0f;
     [SerializeField]
     private Rigidbody rb;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        if(Screen.autorotateToLandscapeLeft){
+            Debug.Log("ALready landscape Left");
+        }else{
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+        }
     }
     void Update()
     {

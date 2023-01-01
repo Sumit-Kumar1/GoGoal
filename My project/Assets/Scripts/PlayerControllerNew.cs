@@ -1,7 +1,3 @@
-using System.Security.AccessControl;
-using System.Runtime.InteropServices.ComTypes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControllerNew : MonoBehaviour

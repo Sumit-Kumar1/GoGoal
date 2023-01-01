@@ -8,14 +8,15 @@ public class playerControl : MonoBehaviour
     private float m_Hpos;
     private float m_Vpos;
 
-    private void Start() {
-        rb = this.GetComponent<Rigidbody>();    
+    private void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
     }
-    private void Update() {
-        
-        m_Vpos = Input.GetAxis("Vertical")*m_Vspeed*Time.deltaTime;
-        m_Hpos = Input.GetAxis("Horizontal")*m_Hspeed*Time.deltaTime;
+    private void Update()
+    {
+        m_Vpos = Input.GetAxis("Vertical") * m_Vspeed * Time.deltaTime;
+        m_Hpos = Input.GetAxis("Horizontal") * m_Hspeed * Time.deltaTime;
 
-       rb.AddForce(m_Hpos,0, m_Vpos, ForceMode.Impulse);
+        rb.AddForce(m_Hpos, 0, m_Vpos, ForceMode.Impulse);
     }
 }
