@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
     GameObject ball;
     private void Awake()
     {
-        ball = GameObject.Instantiate(GameObjectBall, SpawnB.transform.position, Quaternion.identity);
+        //ball = GameObject.Instantiate(GameObjectBall, SpawnB.transform.position, Quaternion.identity);
     }
 
     void Start()
     {
-        vcam.Follow = ball.transform;
+        //vcam.Follow = ball.transform;
     }
 
     // Update is called once per frame

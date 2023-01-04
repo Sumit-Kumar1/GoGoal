@@ -793,6 +793,45 @@ public partial class @InputActionsAsset : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Maze"",
+            ""id"": ""489fb5bc-d13b-4cf0-97d5-b537ab60eb39"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""78970ece-f994-4faf-9813-92ba4aba306f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0345d296-f81e-4e06-b4a6-ee005879c527"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cc76f5c-160e-45a9-83c4-f43d67101051"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -875,6 +914,9 @@ public partial class @InputActionsAsset : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Maze
+        m_Maze = asset.FindActionMap("Maze", throwIfNotFound: true);
+        m_Maze_Newaction = m_Maze.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1084,6 +1126,39 @@ public partial class @InputActionsAsset : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Maze
+    private readonly InputActionMap m_Maze;
+    private IMazeActions m_MazeActionsCallbackInterface;
+    private readonly InputAction m_Maze_Newaction;
+    public struct MazeActions
+    {
+        private @InputActionsAsset m_Wrapper;
+        public MazeActions(@InputActionsAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Maze_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Maze; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MazeActions set) { return set.Get(); }
+        public void SetCallbacks(IMazeActions instance)
+        {
+            if (m_Wrapper.m_MazeActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_MazeActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_MazeActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_MazeActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_MazeActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public MazeActions @Maze => new MazeActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1147,5 +1222,9 @@ public partial class @InputActionsAsset : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IMazeActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

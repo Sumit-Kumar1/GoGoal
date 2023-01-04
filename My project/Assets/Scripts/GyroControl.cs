@@ -1,39 +1,41 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class GyroControl : MonoBehaviour
 {
     [SerializeField]
     float _speed = 10.0f;
+
     [SerializeField]
     private Rigidbody rb;
-
-    private void Start() {
+    
+    private void Start()
+    {
         rb = GetComponent<Rigidbody>();
-        if(Screen.autorotateToLandscapeLeft){
+      
+        if (Screen.autorotateToLandscapeLeft)
+        {
             Debug.Log("ALready landscape Left");
-        }else{
-            Screen.orientation = ScreenOrientation.LandscapeLeft;
         }
+        else
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Debug.Log("Device Rotated by Code");
+        }
+
     }
+
     void Update()
     {
+        // top capture accelerometer input
         Vector3 dir = Vector3.zero;
-        //we assume that device is held parallel to ground
-        // home button is in right hand
 
-        //XY plane of device is mapped onto XZ plane
-        //Rotate 90 degrees around Y axis
+        // normalized acceleration Input
+        Vector3 dirN = Input.acceleration;
+        dirN.x = -dirN.x;
+        Quaternion newRotation = Quaternion.Euler((-90+dirN.x*30), 0,dirN.z*30);
 
-        dir.x = -Input.acceleration.y;
-        dir.z = Input.acceleration.x;
-
-        //clamp acceleration vector to unit sphere
-        if(dir.sqrMagnitude > 1)
-            dir.Normalize();
-
-        dir *= Time.deltaTime;
-        this.transform.Translate(dir*_speed);
-
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, 45);
     }
-
 }
+    
